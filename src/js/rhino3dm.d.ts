@@ -3133,7 +3133,7 @@ declare module 'rhino3dm' {
 		/**
 		 * @description Adds a point object to Rhino.
 		 * @param {number[]} point An array with three numbers which define the point.
-		 * @param {ObjectAttributes} attributes The attributes to apply to the point.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier of new rhino object.
 		 */
 		addPoint(point:number[], attributes: ObjectAttributes): string;
@@ -3142,11 +3142,12 @@ declare module 'rhino3dm' {
 		 * @param {PointCloud} cloud PointCloud to add.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addPointCloud(cloud:PointCloud): string;
+		addPointCloud(cloud:PointCloud, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a line object to Rhino.
 		 * @param {number[]} from A line start point.
 		 * @param {number[]} to A line end point.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier of new rhino object.
 		 */
 		addLine(from:number[],to:number[]): string;
@@ -3154,81 +3155,92 @@ declare module 'rhino3dm' {
 		 * @description Adds a line object to Rhino.
 		 * @param {number[]} from A line start point.
 		 * @param {number[]} to A line end point.
-		 * @param {ObjectAttributes} attributes The attributes to apply to the line.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier of new rhino object.
 		 */
 		addLine(from:number[],to:number[], attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a polyline object to Rhino.
 		 * @param {number[][] | Point3dList} points An array of points in [x, y, z] format or Point3dList. 
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addPolyline(points:number[][] | Point3dList): string;
+		addPolyline(points:number[][] | Point3dList, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a curve object to the document representing an arc.
 		 * @param {Arc} arc An arc.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addArc(arc:Arc): string;
+		addArc(arc:Arc, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a curve object to the document representing a circle.
 		 * @param {Circle} circle A circle to add.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addCircle(circle:Circle): string;
+		addCircle(circle:Circle, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a curve object to the document representing an ellipse.
 		 * @param {Ellipse} ellipse An ellipse to add.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addEllipse(ellipse:Ellipse): string;
+		addEllipse(ellipse:Ellipse, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a surface object to the document representing a sphere.
 		 * @param {Sphere} sphere A sphere to add.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addSphere(sphere:Sphere): string;
+		addSphere(sphere:Sphere, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a curve object to the table.
 		 * @param {Curve} curve A curve to add.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addCurve(curve:Curve): string;
+		addCurve(curve:Curve, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a text dot object to the table.
 		 * @param {string} text The text.
 		 * @param {number[]} location The location.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addTextDot(text:string,location:number[]): string;
+		addTextDot(text:string,location:number[], attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a surface object to Rhino.
 		 * @param {Surface} surface A duplicate of this surface is added to Rhino.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addSurface(surface:Surface): string;
+		addSurface(surface:Surface, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds an extrusion object to Rhino.
 		 * @param {Extrusion} extrusion A duplicate of this extrusion is added to Rhino.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addExtrusion(extrusion:Extrusion): string;
+		addExtrusion(extrusion:Extrusion, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a mesh object to Rhino.
 		 * @param {Mesh} mesh A duplicate of this mesh is added to Rhino.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addMesh(mesh:Mesh): string;
+		addMesh(mesh:Mesh, attributes: ObjectAttributes): string;
 		/**
 		 * @description Adds a brep object to Rhino.
 		 * @param {Brep} brep A duplicate of this brep is added to Rhino.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addBrep(brep:Brep): string;
+		addBrep(brep:Brep, attributes: ObjectAttributes): string;
 		/**
 		 * @description Duplicates the object, then adds a copy of the object to the document.
 		 * @param {GeometryBase} geometry
-		 * @param {ObjectAttributes} attributes
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
 		add(geometry: GeometryBase, attributes: ObjectAttributes): string;
@@ -3237,9 +3249,10 @@ declare module 'rhino3dm' {
 		/**
 		 * @description Adds an instance reference geometry object to the table.
 		 * @param {InstanceReferenceGeometry} instanceReference The instance reference geometry object.
+		 * @param {ObjectAttributes} attributes The attributes to apply to this object.
 		 * @returns {string} A unique identifier for the object.
 		 */
-		addInstanceObject(instanceReference:InstanceReference): string;
+		addInstanceObject(instanceReference:InstanceReference, attributes: ObjectAttributes): string;
 		/**
 		 * @description Gets the bounding box containing every object in this table.
 		 * @returns {BoundingBox} The computed bounding box.
