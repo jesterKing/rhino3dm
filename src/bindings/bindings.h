@@ -42,7 +42,11 @@ std::string ToStdString(const py::str& str);
   #pragma comment(lib, "shlwapi.lib")
 #endif
 
+#if defined(RHINOCORE_BINDINGS)
+#include "../rhinocore_bindings/stdafx.h"
+#else
 #include "../lib/opennurbs/opennurbs.h"
+#endif
 
 #if defined(ON_WASM_COMPILE)
 #include <emscripten/bind.h>
