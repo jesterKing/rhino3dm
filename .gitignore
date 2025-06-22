@@ -93,6 +93,7 @@ src/MethodGen.pdb
 src/dotnet/Resources/Resource.designer.cs
 script/bootstrap.pyc
 src/rhinocore_bindings/build
+src/rhinocore_bindings/out
 
 node_modules/
 .vs/
