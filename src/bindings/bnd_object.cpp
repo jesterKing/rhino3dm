@@ -5,7 +5,14 @@
 std::string StringFromDict(BND_DICT& d, const char* key)
 {
 #if defined(ON_PYTHON_COMPILE)
+
+#if defined(NANOBIND)
+  nanobind::handle value_handle = d[key];
+  std::string rc = ToStdString(nanobind::str(value_handle));
+#else
   std::string rc = ToStdString(py::str(d[key]));
+#endif
+
 #else
   std::string rc = d[key].as<std::string>();
 #endif

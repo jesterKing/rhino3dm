@@ -6,29 +6,31 @@ project(rhinocore_py_bindings CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(RHINO3DM_PY "YES")
-
-# add_compile_definitions( NANOBIND_BUILD )
-# if (CMAKE_VERSION VERSION_LESS 3.18)
-#   set(DEV_MODULE Development)
-# else()
-#   set(DEV_MODULE Development.Module)
-# endif()
-# find_package(Python 3.8 COMPONENTS Interpreter ${DEV_MODULE} REQUIRED)
-
-# if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-#   set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
-#   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-# endif()
-
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../lib/nanobind nanobind_dir)
-add_subdirectory(../lib/pybind11 pybind11_dir)
-
-
 file(GLOB bindings_SRC "../bindings/*.h" "../bindings/*.cpp")
 
-# nanobind_add_module(rhinocore_py_bindings ${bindings_SRC} stdafx.cpp)
-pybind11_add_module(rhinocore_py_bindings ${bindings_SRC} stdafx.cpp)
+set(RHINO3DM_PY "YES")
+set(NANOBIND_BUILD "YES")
+
+if (${NANOBIND_BUILD})
+  add_compile_definitions( NANOBIND )
+  if (CMAKE_VERSION VERSION_LESS 3.18)
+    set(DEV_MODULE Development)
+  else()
+    set(DEV_MODULE Development.Module)
+  endif()
+  find_package(Python 3.8 COMPONENTS Interpreter ${DEV_MODULE} REQUIRED)
+
+  if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+  endif()
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../lib/nanobind nanobind_dir)
+  nanobind_add_module(rhinocore_py_bindings ${bindings_SRC} stdafx.cpp)
+else()
+  add_subdirectory(../lib/pybind11 pybind11_dir)
+  pybind11_add_module(rhinocore_py_bindings ${bindings_SRC} stdafx.cpp)
+endif()
+
 
 add_definitions(-DRHINOCORE_BINDINGS)
 add_definitions(-DON_CMAKE_BUILD)
@@ -49,5 +51,8 @@ if (WIN32)
   )
 endif()
 
-# target_link_libraries(rhinocore_py_bindings PRIVATE nanobind-static)
-target_link_libraries(rhinocore_py_bindings PRIVATE pybind11::module)
+if (${NANOBIND_BUILD})
+  target_link_libraries(rhinocore_py_bindings PRIVATE nanobind-static)
+else()
+  target_link_libraries(rhinocore_py_bindings PRIVATE pybind11::module)
+endif()
