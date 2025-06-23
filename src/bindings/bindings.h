@@ -166,9 +166,7 @@ BND_DateTime CreateDateTime(struct tm t);
 #include "bnd_cylinder.h"
 #include "bnd_ellipse.h"
 #include "bnd_font.h"
-#include "bnd_object.h"
 #include "bnd_model_component.h"
-#include "bnd_geometry.h"
 #include "bnd_light.h"
 #include "bnd_material.h"
 #include "bnd_embedded_file.h"
@@ -220,3 +218,7 @@ BND_DateTime CreateDateTime(struct tm t);
 #include "bnd_draco.h"
 #include "bnd_rtree.h"
 #include "bnd_linetype.h"
+
+#if defined(RHINOCORE_BINDINGS)
+#include "bnd_rhinosdkdoc.h"
+#endif

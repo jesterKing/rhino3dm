@@ -96,6 +96,9 @@ EMSCRIPTEN_BINDINGS(rhino3dm) {
   initDracoBindings(m);
   initRTreeBindings(m);
   initLinetypeBindings(m);
+#if defined(RHINOCORE_BINDINGS)
+  initRhinoDocBindings(m);
+#endif
 }
 
 #if defined(ON_PYTHON_COMPILE)
