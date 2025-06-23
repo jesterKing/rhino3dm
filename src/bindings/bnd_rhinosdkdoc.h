@@ -14,6 +14,8 @@ public:
 
   BND_UUID AddPoint1(double x, double y, double z);
   BND_UUID AddPoint2(const ON_3dPoint& point);
+  BND_UUID AddLine1(const ON_3dPoint& from, const ON_3dPoint& to);
+  BND_UUID AddLine2(const ON_Line& line);
 };
 
 class BND_RhinoDoc
