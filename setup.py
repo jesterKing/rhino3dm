@@ -150,9 +150,6 @@ setup(
     author_email='steve@mcneel.com',
     license="MIT",
     classifiers=[
-        "License :: OSI Approved :: MIT License"
-    ],
-    classifiers=[
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
