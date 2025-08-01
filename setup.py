@@ -148,6 +148,17 @@ setup(
     version='8.17.0',
     author='Robert McNeel & Associates',
     author_email='steve@mcneel.com',
+    license="MIT",
+    classifiers=[
+        "License :: OSI Approved :: MIT License"
+    ],
+    classifiers=[
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Operating System :: OS Independent",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+    ],
     description='Python library based on OpenNURBS with a RhinoCommon style',
     long_description=
 """# rhino3dm.py
