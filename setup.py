@@ -10,7 +10,8 @@ import struct
 import fileinput
 from typing import List
 from pathlib import Path
-from distutils.version import LooseVersion
+if platform.system() == "Windows":
+    from distutils.version import LooseVersion
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
 
